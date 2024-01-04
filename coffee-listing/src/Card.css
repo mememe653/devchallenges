@@ -1,0 +1,77 @@
+.title-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.image-container {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+img {
+  border-radius: 1rem;
+}
+
+.popular-tag {
+  position: absolute;
+  z-index: 1;
+  top: 0.5rem;
+  left: 0.5rem;
+  background-color: #F6C768;
+  font-size: 0.625rem;
+  padding: 0.5em 1em;
+  border-radius: 2em;
+}
+
+.price {
+  background-color: #BEE3CC;
+  font-size: 0.75rem;
+  padding: 0.5em;
+  border-radius: 0.2rem;
+}
+
+.review {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.review::before {
+  content: url("./assets/Star_fill.svg");
+}
+
+.no-review {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.no-review::before {
+  content: url("./assets/Star.svg");
+}
+
+.title {
+  color: #FEF7EE;
+  font-size: 0.875rem;
+}
+
+.rating {
+  color: #FEF7EE;
+}
+
+.votes {
+  color: #6F757C;
+}
+
+.rating-availability {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+}
+
+.unavailable {
+  color: #ED735D;
+}

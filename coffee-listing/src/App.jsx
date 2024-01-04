@@ -1,33 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
+import Card from "./Card.jsx";
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [coffees, setCoffees] = useState([]);
+  const [displayAvailable, setDisplayAvailable] = useState(false);
+
+  useEffect(() => {
+    fetch("https://raw.githubusercontent.com/devchallenges-io/web-project-ideas/main/front-end-projects/data/simple-coffee-listing-data.json")
+      .then(response => response.json())
+      .then(data => setCoffees(data))
+      .catch(error => console.log(error))
+  }, []);
+
+  let allButton;
+  let availableButton;
+  if (displayAvailable) {
+    allButton = <button onClick={() => setDisplayAvailable(false)}>All Products</button>;
+    availableButton = <button className="selected" onClick={() => setDisplayAvailable(true)}>Available Now</button>;
+  } else {
+    allButton = <button className="selected" onClick={() => setDisplayAvailable(false)}>All Products</button>;
+    availableButton = <button onClick={() => setDisplayAvailable(true)}>Available Now</button>;
+  }
+
+  let displayedCoffees = coffees;
+  if (displayAvailable) {
+    displayedCoffees = coffees.filter(coffee => coffee.available);
+  }
+
+  const cards = displayedCoffees.map(coffee => <Card image={coffee.image} title={coffee.name} price={coffee.price} rating={coffee.rating} numVotes={coffee.votes} popular={coffee.popular} available={coffee.available} />);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+    <div className="bg"></div>
+    <main>
+      <h1>Our Collection</h1>
+      <p>
+          Introducing our Coffee Collection, a selection of unique coffees
+          from different roast types and origins, expertly roasted in small
+          batches and shipped fresh weekly.
       </p>
+      <div>
+        {allButton}
+        {availableButton}
+      </div>
+      <ul>{...cards}</ul>
+    </main>
     </>
   )
 }

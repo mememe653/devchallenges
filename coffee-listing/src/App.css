@@ -1,42 +1,84 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.bg {
+  height: 280px;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  background-image: url("./assets/bg-cafe.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 280px;
+  background-position: center top;
+  background-attachment: fixed;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  padding: 0;
+}
+
+h1 {
+  color: #FEF7EE;
+  font-size: 2rem;
+  margin-bottom: 0;
+  position: relative;
+  z-index: 0;
+}
+
+h1::after {
+  content: url("./assets/vector.svg");
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  z-index: -1;
+}
+
+p {
+  color: #6F757C;
   text-align: center;
+  max-width: 30rem;
+  position: relative;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+button {
+  color: #FEF7EE;
+  background-color: transparent;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0.5em 1em;
+  border-radius: 0.5rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.selected {
+  background-color: #6F757C;
+}
+
+main {
+  background-color: #1B1D1F;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem;
+  max-width: 400px;
+  margin: 140px auto 70px;
+  border-radius: 1rem;
+  overflow: hidden;
+  /* position: relative;
+  z-index: -2; */
+}
+
+@media (min-width: 800px) {
+  main {
+    max-width: 700px;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media (min-width: 1100px) {
+  main {
+    max-width: 1000px;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
